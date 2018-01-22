@@ -38,8 +38,8 @@ El proyecto fue realizado con las siguientes dependencias NPM:
 + Dependencias de Desarrollo:
 
 + Dependencias de Producción:
-jQuery ~v.3.1.1
-Materialize ~v.0.97.8
+jQuery ~v.3.2.1
+Bootstrap ~v.4.0.0
 
 Clonar repositorio.
 Posicionado en nuestro proyecto hacer correr npm installpara descargar e instalar todas las dependencias utilizadas.
