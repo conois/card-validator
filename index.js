@@ -42,8 +42,10 @@ function isValidCard(){
       }
     }result = sum + impairPosition + pairPositionLess;
     if (result % 10 === 0) {
+      return true; 
       alert('Tarjeta Válida');
     } else {
+      return false; 
       alert('Tarjeta Inválida');
     }
   isValidDate();
@@ -79,3 +81,7 @@ if (res === false){
   alert('nombre inválido')
 }
 }
+
+
+module.exports = isValidCard;
+
