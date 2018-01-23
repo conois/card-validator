@@ -1,9 +1,12 @@
-function isValidCard() {
-  do {
-    // Pedirle al usuario que ingrese su número de tarjeta
-    var numberCar = prompt('Ingresa tu número de tarjeta');
-    if (numberCar === null) {
-      alert('Ingresa una opción válida');
+window.onload = function () {
+  document.getElementById("submitb").addEventListener("click", isValidCard);
+}
+
+
+function isValidCard(){
+  var numberCar= document.getElementById("cardnumber").value;
+  if (numberCar.length === 0) {
+      alert('Ingrese un número');
     } else {
       var arr = [];
       for (var i = 0; i < numberCar.length; i++) {
@@ -37,12 +40,40 @@ function isValidCard() {
           }
         }
       }
-    } result = sum + impairPosition + pairPositionLess;
-    if (result % 10 === 0) { 
+    }result = sum + impairPosition + pairPositionLess;
+    if (result % 10 === 0) {
       alert('Tarjeta Válida');
     } else {
       alert('Tarjeta Inválida');
     }
-  } while (numberCar === null);
+  isValidDate();
 }
-isValidCard();
+
+function isValidDate(){
+  var month = document.getElementById('expirationm').value;
+  var year = document.getElementById('expirationy').value;
+  if ( (month > 13 || month < 1) && (year > 2017 || year < 2007)){
+    alert('Ingrese Mes y Año Válido')
+  } else {
+    return alert('fecha valida');
+  }isValidCVV();
+}
+
+
+function isValidCVV(){
+  var cvv = document.getElementById('cvv').value;
+  if ( cvv.length !== 3 ){
+    alert('Ingresa una cvv válida')
+  } else {
+    return alert('CVV valida');
+  }
+}
+
+function isValidName(){
+  var name = document.getElementById('name').value;
+  if ( cvv.length !== 3 ){
+    alert('Ingresa una cvv válida')
+  } else {
+    return alert('CVV valida');
+  }
+}
