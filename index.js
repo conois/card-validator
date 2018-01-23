@@ -1,5 +1,5 @@
 window.onload = function () {
-  document.getElementById("submitb").addEventListener("click", isValidCard);
+  document.getElementById("submitb").addEventListener("click", isValidName);
 }
 
 
@@ -68,16 +68,18 @@ function isValidCVV(){
     alert('Ingresa una cvv válida')
   } else {
     return alert('CVV valida');
-  }
+  }isValidName();
 }
 
 function isValidName(){
-  var name = document.getElementById('name').value;
-  if ( cvv.length !== 3 ){
-    alert('Ingresa una cvv válida')
-  } else {
-    return alert('CVV valida');
-  }
+var str = document.getElementById('name').value;
+var patt = new RegExp("[0-9]");
+var res = patt.test(str);
+if (res === false){
+  alert('nombre válido')
+}else {
+  alert('nombre inválido')
+}
 }
 
 
