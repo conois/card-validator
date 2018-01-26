@@ -16,37 +16,31 @@
 
 <body>
 
-  <section>
+  <form>
+    <div class="form-group">
+      <label for="cn">Número de tarjeta</label>
+      <input id="cn" name="cn" />
+    </div>
+    <div class="form-group">
+      <label for="exp">Fecha de vencimiento</label>
+      <input id="exp" name="exp" />
+    </div>
+    <div class="form-group">
+      <label for="cvv">CVV</label>
+      <input id="cvv" name="cvv" />
+    </div>
+    <div class="form-group">
+      <label for="name">Nombre completo</label>
+      <input id="name" name="name" />
+    </div>
+    <input type="submit" value="Pagar" />
+  </form>
 
 
 
 
-<input type="number"
-                        id="cardnumber"
-                        class="form-control"
-                        name="cardNumber"
-                        placeholder="Valid Card Number"
-                        autocomplete="cc-number"
-                        required autofocus>
-
-
-<input type="number" id="expirationm" placeholder="Mes">
-<input type="number" id="expirationy" placeholder="Año">
-<input type="number" id="cvv" placeholder="CVV">
-<input type="text" id="name" placeholder="Name">
-
-<button id="submitb" type="button">boton</button>
-
-
-  </section>
-
-
-
-
-  <!-- Link js -->
-
-  <script src="index.js"></script>
-
+<!-- Link js -->
+<script src="index.js"></script>
 
 </body>
 
