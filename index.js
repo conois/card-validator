@@ -102,6 +102,7 @@ function isValidDate(){
   }isValidCVV();
 }
 
+
 //Acá se agregan las clases segun si pasaron o no la validacion completa 
 function isValidForm(){
   let cvv= document.getElementsByName('cvv')[0]; 
