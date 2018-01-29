@@ -1,16 +1,48 @@
 //Eventos  
 
 //detonador evento en CVV 
-var inputcvv= document.getElementsByName('cvv'); 
-inputcvv[0].addEventListener('keyup', isValidCVV);
+let inputcvv= document.getElementsByName('cvv'); 
+inputcvv[0].addEventListener('keyup', validInputCVV);
 
 //detonador evento de tarjeta 
-var inputcn= document.getElementsByName('cn') 
+let inputcn= document.getElementsByName('cn') 
 inputcn[0].addEventListener('keyup', validInputTarget);
+
+//detonador de validacion completa
+let btn= document.getElementsByTagName('input');
+let positionInput= btn.length -1;
+btn[positionInput].addEventListener('click', isValidForm); 
 
 
 //funciones  
-function isValidCard(numberCard){
+function validInputTarget(){
+  let cn= document.getElementById('cn'); 
+  let key= event.keyCode; 
+  if(key>=48 && key<=57 || key==8){
+    if(cn.value.length>18){
+    cn.value= cn.value.substr(0,18);
+    }
+  } else{
+    cn.value= cn.value.substr(0,-1); 
+  }  
+}; 
+
+function validInputCVV(){ 
+  let cvv= document.getElementById('cvv'); 
+  let key= event.keyCode; 
+  if(key>=48 && key<=57 || key==8){
+    if(cvv.value.length>3){
+    cvv.value= cvv.value.substr(0,3); 
+
+    }
+  }else{
+    cvv.value= cvv.value.substr(0,0); 
+  }  
+
+};
+
+function isValidCard(){
+  let numberCard= document.getElementsByName('cn')[0].value; 
   if (numberCard.length === 0) {
       alert('Ingrese un número');
     } else {
@@ -48,69 +80,57 @@ function isValidCard(numberCard){
       }
     }result = sum + impairPosition + pairPositionLess;
     if (result % 10 === 0) {
-      return true; 
-      alert('Tarjeta Válida');
+      console.log('Tarjeta Válida');
+      inputcn[0].classList.remove('error')
+      inputcn[0].classList.add('sucess'); 
     } else {
-      return false; 
-      alert('Tarjeta Inválida');
+      console.log('Tarjeta Inválida');
+      inputcn[0].classList.remove('sucess')
+      inputcn[0].classList.add('error'); 
     }
-}
 
-function isValidCVV(){ 
-  let cvv= document.getElementById('cvv'); 
-  let key= event.keyCode; 
-  if(key>=48 && key<=57){
-    if(cvv.value.length>3){
-    cvv.value= cvv.value.substr(0,3); 
-
-    }
-  }else{
-    cvv.value= cvv.value.substr(0,0); 
-  }  
-
-}; 
-
-function validInputTarget(){
-  let cn= document.getElementById('cn'); 
-  let key= event.keyCode; 
-  if(key>=48 && key<=57){
-    if(cn.value.length>18){
-    cn.value= cn.value.substr(0,18);
-    }
-  } else{
-    cn.value= cn.value.substr(0,-1); 
-  }  
-}; 
-
-
-function isValidName(){
-var str = document.getElementById('name').value;
-var patt = new RegExp("[0-9]");
-var res = patt.test(str);
-if (res === false){
-  alert('nombre válido')
-}else {
-  alert('nombre inválido')
-}
 }
 
 function isValidDate(){
-  if ( (month > 13 || month < 1) && (year > 2017 || year < 2007)){
-    alert('Ingrese Mes y Año Válido')
-  } else {
-    return alert('fecha valida');
-  }isValidCVV();
+  let inputDate= document.getElementsByName('exp')[0];
+  let date= document.getElementsByName('exp')[0].value; 
+  let fecha= new Date(); 
+  let actualMonth= fecha.getMonth()+1; 
+  let actualYear= fecha.getFullYear(); 
+  let shortYear= actualYear.toString().substr(2); 
+  let slach= date.indexOf("/"); 
+  let month= date.substr(0,slach); 
+  let year= parseInt(date.substr(slach+1)); 
+  if(year < shortYear || year > (parseInt(shortYear) + 10) || month > 12){
+    inputDate.classList.remove('success');
+    inputDate.classList.add('error');    
+  } else if (year >= shortYear && month >= actualMonth){
+    inputDate.classList.remove('error'); 
+    inputDate.classList.add('success'); 
+    
+
+  }
 }
 
+function isValidCVV(){
+  let cvv=document.getElementsByName('cvv')[0]; 
+  if(cvv.value.length === 3){
+    cvv.classList.remove('error'); 
+    cvv.classList.add('success'); 
+  } else{
+    cvv.classList.remove('success'); 
+    cvv.classList.add('error');
 
-//Acá se agregan las clases segun si pasaron o no la validacion completa 
-function isValidForm(){
-  let cvv= document.getElementsByName('cvv')[0]; 
-  if(cvv.value.length==3){
-    //agregar clase .sucess
-  }else {
-    //agregar clase .error 
   }
+
+}
+//Acá se agregan las clases segun si pasaron o no la validacion completa
+function isValidForm(event){
+  event.preventDefault();  
+  isValidCard(); 
+  isValidDate();
+  isValidCVV(); 
+
 }
 
 module.exports = isValidCard;
