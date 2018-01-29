@@ -22,11 +22,20 @@ encuentra el archivo base `index.html`, así como también el `index.js`.
 El proyecto fue realizado con las siguientes dependencias NPM:
 
 + Dependencias de Desarrollo:
-  - Chai
-  - Mocha
-+ Dependencias de Producción:
-  - jQuery ~v.3.2.1
-  - Bootstrap ~v.4.0.0
+  - Mocha ~v.5.0.0
+  - Babel-present-env ~v.1.6.1
+  - Eslint ~v.4.15.0
+  - Eslint-config-google ~v.0.9.1
 
-Clonar repositorio.
-Posicionado en nuestro proyecto hacer correr npm installpara descargar e instalar todas las dependencias utilizadas.
++ Dependencias de Producción:
+  - Bootstrap ~v.4.0.0
+  - Browserify ~v.15.2.0
+  - Chai ~v.4.1.2
+
+* Clonar repositorio.
+* Agregar atributo name a los input con los siguientes parámetros:
+- cn (Card Number): El número de la tarjeta de crédito
+- exp (Expiry Date): Fecha de expiración
+- cvv (Card Verification Value): Código de validación de 3 dígitos
+- name: Nombre completo como aparece en la tarjeta
+* Formato de fecha debe ser: mm/aa (solicitar en placeholder).
