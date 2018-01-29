@@ -2,7 +2,7 @@
 
 //detonador evento en CVV 
 let inputcvv= document.getElementsByName('cvv'); 
-inputcvv[0].addEventListener('keyup', isValidCVV);
+inputcvv[0].addEventListener('keyup', validInputCVV);
 
 //detonador evento de tarjeta 
 let inputcn= document.getElementsByName('cn') 
@@ -27,7 +27,7 @@ function validInputTarget(){
   }  
 }; 
 
-function isValidCVV(){ 
+function validInputCVV(){ 
   let cvv= document.getElementById('cvv'); 
   let key= event.keyCode; 
   if(key>=48 && key<=57 || key==8){
@@ -112,12 +112,24 @@ function isValidDate(){
   }
 }
 
+function isValidCVV(){
+  let cvv=document.getElementsByName('cvv')[0]; 
+  if(cvv.value.length === 3){
+    cvv.classList.remove('error'); 
+    cvv.classList.add('success'); 
+  } else{
+    cvv.classList.remove('success'); 
+    cvv.classList.add('error');
 
+  }
+
+}
 //Acá se agregan las clases segun si pasaron o no la validacion completa
 function isValidForm(event){
   event.preventDefault();  
   isValidCard(); 
   isValidDate();
+  isValidCVV(); 
 
 }
 
