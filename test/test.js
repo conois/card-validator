@@ -1,4 +1,3 @@
-
 const assert= require('chai').assert; 
 const isValidCard= require('../index.js'); 
 
