@@ -21,16 +21,20 @@ encuentra el archivo base `index.html`, así como también el `index.js`.
 
 El proyecto fue realizado con las siguientes dependencias NPM:
 
-+ Dependencias de Desarrollo:
++ Dependencias de Desarrollo (uso como desarrollador para las tareas):
   - Mocha ~v.5.0.0
   - Babel-present-env ~v.1.6.1
   - Eslint ~v.4.15.0
   - Eslint-config-google ~v.0.9.1
+  - Chai ~v.4.1.2
+  - Node ~v.9.4.0
+  - Npm ~v.5.6.0
 
-+ Dependencias de Producción:
+
++ Dependencias de Producción (funcionalidad):
   - Bootstrap ~v.4.0.0
   - Browserify ~v.15.2.0
-  - Chai ~v.4.1.2
+
 
 * Clonar repositorio.
 * Agregar atributo name a los input con los siguientes parámetros:
