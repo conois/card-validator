@@ -1,4 +1,4 @@
-// Eventos
+//Eventos 
 
 // Detonador evento en CVV
 let inputcvv= document.getElementsByName('cvv');
@@ -15,9 +15,9 @@ btn[positionInput].addEventListener('click', isValidForm);
 
 
 //funciones  
-function validInputTarget(){
-  let cn= document.getElementById('cn'); 
-  let key= event.keyCode; 
+function validInputTarget(event){ 
+	let numberCard= document.getElementsByName('cn')[0]; 
+  let key= event.keyCode;  
   if(key>=48 && key<=57 || key==8){
     if(cn.value.length>18){
     cn.value= cn.value.substr(0,18);
@@ -27,13 +27,12 @@ function validInputTarget(){
   }  
 }
 
-function validInputCVV(){ 
-  let cvv= document.getElementById('cvv'); 
+function validInputCVV(event){  
+	let cvv= document.getElementsByName('cvv')[0];
   let key= event.keyCode; 
   if(key>=48 && key<=57 || key==8){
     if(cvv.value.length>3){
     cvv.value= cvv.value.substr(0,3); 
-
     }
   }else{
     cvv.value= cvv.value.substr(0,0); 
@@ -41,8 +40,7 @@ function validInputCVV(){
 
 }
 
-function isValidCard(){
-  let numberCard= document.getElementsByName('cn')[0].value; 
+function isValidCard(numberCard){ 
   if (numberCard.length === 0) {
       alert('Ingrese un número');
     } else {
@@ -80,20 +78,20 @@ function isValidCard(){
       }
     }result = sum + impairPosition + pairPositionLess;
     if (result % 10 === 0) {
-      console.log('Tarjeta Válida');
-      inputcn[0].classList.remove('error')
-      inputcn[0].classList.add('sucess'); 
+      console.log('Numero de tarjeta válido');
+      inputcn[0].classList.remove('error'); 
+      inputcn[0].classList.add('success'); 
     } else {
-      console.log('Tarjeta Inválida');
-      inputcn[0].classList.remove('sucess')
-      inputcn[0].classList.add('error'); 
+      console.log('Número de tarjeta inválido');
+      inputcn[0].classList.remove('success')
+      inputcn[0].classList.add('error');
     }
 
 }
 
 function isValidDate(){
-  let inputDate= document.getElementsByName('exp')[0];
-  let date= document.getElementsByName('exp')[0].value; 
+	let inputDate= document.getElementsByName('exp')[0];
+	let date= document.getElementsByName('exp')[0].value;
   let fecha= new Date(); 
   let actualMonth= fecha.getMonth()+1; 
   let actualYear= fecha.getFullYear(); 
@@ -103,30 +101,47 @@ function isValidDate(){
   let year= parseInt(date.substr(slach+1)); 
   if(year < shortYear || year > (parseInt(shortYear) + 10) || month > 12){
     inputDate.classList.remove('success');
-    inputDate.classList.add('error');    
+    inputDate.classList.add('error');  
+    return false;   
   } else if (year >= shortYear && month >= actualMonth){
     inputDate.classList.remove('error'); 
     inputDate.classList.add('success'); 
   }
 }
 
-function isValidCVV(){
-  let cvv=document.getElementsByName('cvv')[0]; 
+function isValidCVV(cvv){
   if(cvv.value.length === 3){
     cvv.classList.remove('error'); 
     cvv.classList.add('success'); 
+    return true; 
   } else{
     cvv.classList.remove('success'); 
     cvv.classList.add('error');
+    return false; 
   }
 }
 
-function isValidName(){
+function isValidName(nombre){
+	let space= nombre.value.indexOf(' ');
+	let firstName= nombre.value.substr(0,space);
+	let lastName= nombre.value.substr(space+1);
+	if(firstName.length >=2 && lastName.length>=2){
+		 nombre.classList.remove('error'); 
+		 nombre.classList.add('success');
+		 return true;  
+	} else{
+		nombre.classList.remove('success'); 
+		nombre.classList.add('error'); 
+		return false; 
+	}
 }
 //validacion completa
 function isValidForm(event){
+	let numberCard= document.getElementsByName('cn')[0].value;
+	let cvv=document.getElementsByName('cvv')[0];
+	let nombre= document.getElementsByName('name')[0]; 
   event.preventDefault();  
-  isValidCard(); 
+  isValidCard(numberCard); 
   isValidDate();
   isValidCVV(); 
 }
