@@ -4,7 +4,8 @@
   "description": "Credit Card Validator",
   "main": "lib/main.js",
   "scripts": {
-    "test": "mocha"
+    "test": "mocha",
+    "tobrowser": "browserify src/card-validator.js -o lib/main.js"
   },
   "repository": {
     "type": "git",

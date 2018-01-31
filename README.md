@@ -29,11 +29,13 @@ El proyecto fue realizado con las siguientes dependencias NPM:
   - Chai ~v.4.1.2
   - Node ~v.9.4.0
   - Npm ~v.5.6.0
+  - Browserify ~v.15.2.0
+  - JsDom
 
 
 + Dependencias de Producción (funcionalidad):
   - Bootstrap ~v.4.0.0
-  - Browserify ~v.15.2.0
+
 
 
 * Clonar repositorio.
