@@ -1,6 +1,4 @@
-//Eventos 
 const validation = {};
-
 
 //funciones  
 function validInputTarget(event){ 

@@ -1,10 +1,11 @@
 {
-  "name": "card-validator",
+  "name": "tdd-validator",
   "version": "1.0.0",
   "description": "Credit Card Validator",
   "main": "lib/main.js",
   "scripts": {
     "test": "mocha",
+    "test": "chai",
     "tobrowser": "browserify src/card-validator.js -o lib/main.js"
   },
   "repository": {
