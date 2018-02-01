@@ -1,4 +1,3 @@
-(function e(t,n,r){function s(o,u){if(!n[o]){if(!t[o]){var a=typeof require=="function"&&require;if(!u&&a)return a(o,!0);if(i)return i(o,!0);var f=new Error("Cannot find module '"+o+"'");throw f.code="MODULE_NOT_FOUND",f}var l=n[o]={exports:{}};t[o][0].call(l.exports,function(e){var n=t[o][1][e];return s(n?n:e)},l,l.exports,e,t,n,r)}return n[o].exports}var i=typeof require=="function"&&require;for(var o=0;o<r.length;o++)s(r[o]);return s})({1:[function(require,module,exports){
 //Eventos 
 const validation = {};
 
@@ -69,14 +68,8 @@ validation.isValidCard = function(numberCard){
       }
     }result = sum + impairPosition + pairPositionLess;
     if (result % 10 === 0) {
-      inputcn[0].classList.remove('error');
-      inputcn[0].classList.add('success');
-      document.getElementById('cn').style.borderColor = "green";
       return true;
     } else {
-      inputcn[0].classList.remove('success')
-      inputcn[0].classList.add('error');
-      document.getElementById('cn').style.borderColor = "red";
       return false;
     }
 
@@ -104,29 +97,18 @@ validation.isValidDate = function(expi){
 }
 
 validation.isValidCVV = function(cvv){
-  if(cvv.value.length === 3){
-    cvv.classList.remove('error'); 
-    cvv.classList.add('success');
-    document.getElementById('cvv').style.borderColor = "green";
+  if(cvv.length === 3){
+    return true;
   } else{
-    cvv.classList.remove('success'); 
-    cvv.classList.add('error');
-    document.getElementById('cvv').style.borderColor = "red";
+    return false;
   }
 }
 
 validation.isValidName = function(nombre){
-  let space= nombre.value.indexOf(' ');
-  let firstName= nombre.value.substr(0,space);
-  let lastName= nombre.value.substr(space+1);
-  if(firstName.length >=2 && lastName.length>=2){
-     nombre.classList.remove('error'); 
-     nombre.classList.add('success');
-     document.getElementById('name').style.borderColor = "green";
+  if(nombre.length >=2){
+     return true;
   } else{
-    nombre.classList.remove('success'); 
-    nombre.classList.add('error'); 
-    document.getElementById('name').style.borderColor = "red";
+    return false;
   }
 }
 //validacion completa
@@ -148,18 +130,5 @@ validation.isValidForm = function (event){
   }
 }
 
-//detonador evento en CVV 
-let inputcvv= document.getElementsByName('cvv'); 
-inputcvv[0].addEventListener('keyup', validInputCVV);
-
-//detonador evento de tarjeta 
-let inputcn= document.getElementsByName('cn') 
-inputcn[0].addEventListener('keyup', validInputTarget);
-
-//detonador de validacion completa
-let btn= document.getElementsByTagName('input');
-let positionInput= btn.length -1;
-btn[positionInput].addEventListener('click', validation.isValidForm); 
 
 module.exports = validation;
-},{}]},{},[1]);

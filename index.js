@@ -1,17 +1,5 @@
 //Eventos 
-
-//detonador evento en CVV 
-let inputcvv= document.getElementsByName('cvv'); 
-inputcvv[0].addEventListener('keyup', validInputCVV);
-
-//detonador evento de tarjeta 
-let inputcn= document.getElementsByName('cn') 
-inputcn[0].addEventListener('keyup', validInputTarget);
-
-//detonador de validacion completa
-let btn= document.getElementsByTagName('input');
-let positionInput= btn.length -1;
-btn[positionInput].addEventListener('click', isValidForm); 
+const validation = {};
 
 
 //funciones  
@@ -40,7 +28,9 @@ function validInputCVV(event){
 
 };
 
-function isValidCard(numberCard){ 
+
+
+validation.isValidCard = function(numberCard){
   if (numberCard.length === 0) {
       alert('Ingrese un número');
     } else {
@@ -91,7 +81,7 @@ function isValidCard(numberCard){
 
 }
 
-function isValidDate(){
+validation.isValidDate = function(expi){
   let inputDate= document.getElementsByName('exp')[0];
   let date= document.getElementsByName('exp')[0].value;
   let fecha= new Date(); 
@@ -112,7 +102,7 @@ function isValidDate(){
   }
 }
 
-function isValidCVV(cvv){
+validation.isValidCVV = function(cvv){
   if(cvv.value.length === 3){
     cvv.classList.remove('error'); 
     cvv.classList.add('success');
@@ -124,7 +114,7 @@ function isValidCVV(cvv){
   }
 }
 
-function isValidName(nombre){
+validation.isValidName = function(nombre){
   let space= nombre.value.indexOf(' ');
   let firstName= nombre.value.substr(0,space);
   let lastName= nombre.value.substr(space+1);
@@ -139,21 +129,35 @@ function isValidName(nombre){
   }
 }
 //validacion completa
-function isValidForm(event){
+validation.isValidForm = function (event){
   let numberCard= document.getElementsByName('cn')[0].value;
   let date= document.getElementsByName('exp')[0].value;
   let cvv=document.getElementsByName('cvv')[0];
   let nombre= document.getElementsByName('name')[0];
   event.preventDefault();  
-  isValidCard(numberCard); 
-  isValidDate(date);
-  isValidCVV(cvv); 
-  isValidName(nombre);
+  validation.isValidCard(numberCard); 
+  validation.isValidDate(date);
+  validation.isValidCVV(cvv); 
+  validation.isValidName(nombre);
   if (document.getElementsByClassName('success').length === 4){
     alert('Tarjeta Válida');
+    document.getElementById("myForm").reset();
   } else {
     alert('Revise parámetros, Tarjeta Inválida');
   }
 }
 
-module.exports = isValidCard;
+//detonador evento en CVV 
+let inputcvv= document.getElementsByName('cvv'); 
+inputcvv[0].addEventListener('keyup', validInputCVV);
+
+//detonador evento de tarjeta 
+let inputcn= document.getElementsByName('cn') 
+inputcn[0].addEventListener('keyup', validInputTarget);
+
+//detonador de validacion completa
+let btn= document.getElementsByTagName('input');
+let positionInput= btn.length -1;
+btn[positionInput].addEventListener('click', validation.isValidForm); 
+
+module.exports = validation;
