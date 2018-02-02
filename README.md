@@ -38,10 +38,55 @@ El proyecto fue realizado con las siguientes dependencias NPM:
 
 
 
-* Clonar repositorio.
-* Agregar atributo name a los input con los siguientes parámetros:
-- cn (Card Number): El número de la tarjeta de crédito
-- exp (Expiry Date): Fecha de expiración
-- cvv (Card Verification Value): Código de validación de 3 dígitos
-- name: Nombre completo como aparece en la tarjeta
-* Formato de fecha debe ser: mm/aa (solicitar en placeholder).
+## Instalacion
+1. Clonar repositorio.
+2. Agregar atributo name a los input con los siguientes valores:
+- Input Número de Tarjeta = agregar atributo *name='cn'*
+- Input Fecha de Vencimiento = agregar atributo *name='exp'*
+- Input cvv = agregar atributo *name='cvv'*
+- Input Nombre Completo = agregar atributo *name='name'*
+- Agregar atributo id con los mismos nombres del atributo name. 
+
+`<form class="container" id="myForm">
+    <div class="form-group">
+      <label for="cn">Número de tarjeta</label>
+      <input id="cn" name="cn" />
+    </div>
+    <div class="form-group">
+      <label for="exp">Fecha de vencimiento</label>
+      <input id="exp" name="exp" placeholder="mm/aa" />
+    </div>
+    <div class="form-group">
+      <label for="cvv">CVV</label>
+      <input id="cvv" name="cvv" />
+    </div>
+    <div class="form-group">
+      <label for="name">Nombre completo</label>
+      <input id="name" name="name" />
+    </div>
+    <input type="submit" value="Pagar" />
+  </form>`
+
+Para que el plugin funcione primero debes inicializar tu proyecto en la terminal con el comando
+
+`npm init`
+
+Descargar cardify desde tu terminal con el comando
+
+`npm install tdd-validator`
+
+Para que tu proyecto se vea en el navegador debes instalar Browserify de manera global en tu computadora con el siguiente comando en tu terminal
+
+`npm install -g browserify`
+
+Luego crea en la raíz de tu proyecto las carpetas src y dist con el archivo app.js dentro de cada una, luego ejecuta browserify de la siguiente manera para que tu js original que se encuentra en la carpeta src se guarde modificado en la carpeta dist
+
+`browserify src/app.js -o dist/app.js`
+
+Enlaza el archivo 'Browserificado' en tu .html
+
+`<script src="dist/app.js"></script>`
+
+En tu archivo .js principal pega el siguiente código
+
+`var tddValidator = require('tdd-validator');`
